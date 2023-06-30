@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple windows calc</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/style/style.css">
+    </head>
+    <body>
+        <div class="calc-app">
+            <div class="wrapper">
+                <div class="history-button">
+                    <img src="/img/history.svg" alt="history-btn" class="history-btn">
+                </div>
+                <div class="calc-screen">
+                    <div class="additional-scr"></div>
+                    <div class="main-scr"></div>
+                </div>
+                <div class="inputs">
+                    <div class="calc-input darked" data-operator="percent">%</div>
+                    <div class="calc-input darked" data-option="clear-entry">CE</div>
+                    <div class="calc-input darked" data-option="clear-all">C</div>
+                    <div class="calc-input darked" data-option="delete">DEL</div>
+                    <div class="calc-input darked" data-operator="divide-by-one"><sup>1</sup>/<sub>x</sub></div>
+                    <div class="calc-input darked" data-operator="pow">x<sup>2</sup></div>
+                    <div class="calc-input darked" data-operator="sqrt">√(x)</div>
+                    <div class="calc-input darked" data-operator="divide">÷</div>
+                    <div class="calc-input" data-number="7">7</div>
+                    <div class="calc-input" data-number="8">8</div>
+                    <div class="calc-input" data-number="9">9</div>
+                    <div class="calc-input darked" data-operator="multiply">×</div>
+                    <div class="calc-input" data-number="4">4</div>
+                    <div class="calc-input" data-number="5">5</div>
+                    <div class="calc-input" data-number="6">6</div>
+                    <div class="calc-input darked" data-operator="subtract">−</div>
+                    <div class="calc-input" data-number="1">1</div>
+                    <div class="calc-input" data-number="2">2</div>
+                    <div class="calc-input" data-number="3">3</div>
+                    <div class="calc-input darked" data-operator="addition">+</div>
+                    <div class="calc-input" data-operator="change-sign">±</div>
+                    <div class="calc-input" data-number="0">0</div>
+                    <div class="calc-input" data-operator="point">.</div>
+                    <div class="calc-input" data-operator="equal">=</div>
+                </div>
+            </div>
+            <div class="history-scr">
+                <div class="history-button-delete">
+                    <img src="/img/delete.svg" alt="delete">
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/js/Calculator.js"></script>
+        <script type="module" src="/js/Main.js"></script>
+    </body>
+</html>

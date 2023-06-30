@@ -1,0 +1,175 @@
+@font-face {
+    font-family: "Noto";
+    src: url(/fonts/NotoSansMath-Regular.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto";
+    font-size: 1.3em;
+}
+
+.calc-app {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 320px;
+    max-width: 420px;
+    max-height: 500px;
+    background-color: #F3F3F3;
+    user-select: none;
+    overflow: hidden;
+}
+
+.wrapper {
+    padding: 5px;
+}
+
+.history-button {
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    padding: 7px;
+}
+
+.history-scr {
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    padding: 10px;
+    width: 100%;
+    height: 75%;
+    border-top: 1px solid #AC0046;
+    text-align: right;
+    background-color: #F3F3F3;
+    transition: top 1s;
+}
+
+.history-scr ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 85%;
+    list-style: none;
+    overflow: hidden;
+}
+
+.history-scr ul li {
+    padding: 5px;
+}
+
+.history-button-delete {
+    position: absolute;
+    padding: 5px;
+    right: 10px;
+    bottom: 5%;
+    width: 25px;
+    height: 25px;
+}
+
+.history-button:hover,
+.history-scr ul li:hover,
+.history-button-delete:hover {
+    border-radius: 5px;
+    background-color:#E9E7E7;
+}
+
+.history-button:active,
+.history-button-delete:active {
+    transform: scale(0.95);
+}
+
+.visible {
+    top: 26%;
+    z-index: 100;
+}
+
+.calc-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 120px;
+    text-align: right;
+}
+
+.calc-screen .additional-scr,
+.calc-screen .main-scr {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0 5px;
+}
+
+.calc-screen .additional-scr {
+    height: 35%;
+    font-size: 1em;
+    color: #ADADAD;
+}
+
+.calc-screen .main-scr {
+    max-height: 65%;
+    font-size: 3em;
+}
+
+.inputs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.inputs .calc-input {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    border: 1px solid #f5f5f5;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    box-shadow: 0px 1px 1px 1px #E9E9E9;
+    cursor: pointer;
+}
+
+.inputs .calc-input:active {
+    filter: contrast(90%) grayscale(0.1);
+}
+
+.inputs .calc-input:last-child {
+    color: #FFFFFF;
+    background-color: #AC0046;
+}
+
+.calc-input.darked {
+    background-color: #F9F9F9;
+}
+
+.calc-input sup,
+.calc-input sub {
+    position: absolute;
+    font-size: 0.5em;
+    font-weight: bold;
+}
+
+.calc-input[data-operator="pow"] sup {
+    top: 25%;
+    left: 55%;
+}
+
+.calc-input[data-operator="divide-by-one"] sup {
+    top: 28%;
+    left: 42%;
+    font-size: 0.55em;
+}
+
+.calc-input[data-operator="divide-by-one"] sub {
+    top: 35%;
+    left: 52%;
+    font-size: 0.6em;
+}
