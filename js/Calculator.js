@@ -13,16 +13,16 @@ export class Calculator {
 
     start() {
         this.numbers.forEach(num => num.addEventListener('click', this.readNum))
-        this.operators.forEach(op => op.addEventListener('click', this.readOperator))
         this.options.forEach(opt => opt.addEventListener('click', this.readOption))
+        this.operators.forEach(op => op.addEventListener('click', (evt) => {
+            this.readOperator(evt)
+            this.displayZoom()}))
         this.historyButton.addEventListener('click', () => {
             this.historyScreen.classList.toggle('visible')
-            this.createHistoryList()
-        })
+            this.createHistoryList()})
         this.historyDeleteButton.addEventListener('click', () => {
             this.history = []
-            this.createHistoryList()
-        })
+            this.createHistoryList()})
 
         this.mainScreen.textContent = '0'
     }
@@ -32,6 +32,7 @@ export class Calculator {
         else this.mainScreen.textContent += evt.target.dataset.number
         
         this.lastInputIsOperator = false
+        this.displayZoom()
     }
 
     readOperator = (evt) => {
@@ -131,6 +132,7 @@ export class Calculator {
         }
 
         if(evt.target.dataset.operator !== 'point') this.lastInputIsOperator = true
+        this.displayZoom()
     }
 
     readOption = (evt) => {
@@ -156,6 +158,7 @@ export class Calculator {
                 if(!this.mainScreen.textContent.length) this.mainScreen.textContent = '0'
                 break
         }
+        this.displayZoom()
     }
 
     calculate(op, firstNum, secondNum) {
@@ -190,11 +193,7 @@ export class Calculator {
         }
 
         this.calcHistory(`${this.additionalScreen.textContent} = ${this.mainScreen.textContent}`)
-    }
-
-    floatFix(value) {
-        value = +value
-        return parseFloat(value.toFixed(6))
+        this.displayZoom()
     }
     
     calcHistory(value) {
@@ -215,5 +214,16 @@ export class Calculator {
         })
 
         this.historyScreen.append(list)
+    }
+
+    displayZoom = () => {
+        const maxUnchangedMainScreenLn = 8
+        const mainScreenLn = this.mainScreen.textContent.length
+        const mainScreenStyle = window.getComputedStyle(this.mainScreen)
+
+        if(mainScreenLn > maxUnchangedMainScreenLn) {
+            const newSize = parseInt(mainScreenStyle.fontSize) - ((mainScreenLn - maxUnchangedMainScreenLn) * 1.5)
+            this.mainScreen.style.fontSize = newSize < 30 ? `30px` : `${newSize}px`
+        } else this.mainScreen.style.fontSize = `3em`
     }
 }
