@@ -43,15 +43,15 @@ export class Calculator {
         if(evt.target.dataset.operator === 'equal') {
 
             if(!this.operator) {
-                this.additionalScreen.textContent = this.firstNum + '='
+                this.additionalScreen.textContent = `${this.firstNum} =`
             }
 
             if(this.firstNum && this.operator) {
                 this.mainScreen.textContent = this.calculate(this.operator[0], this.firstNum, this.secondNum)
-                this.additionalScreen.textContent = this.firstNum + this.operator[1]  + (this.secondNum || '') + '='
+                this.additionalScreen.textContent = `${this.firstNum} ${this.operator[1]} ${this.secondNum || ''} =`
             }
 
-            this.calcHistory(this.additionalScreen.textContent + this.mainScreen.textContent)
+            this.calcHistory(`${this.additionalScreen.textContent} ${this.mainScreen.textContent}`)
 
             this.firstNum = null
         } 
@@ -103,7 +103,7 @@ export class Calculator {
             }
 
             if(this.lastInputIsOperator) {
-                this.additionalScreen.textContent = this.firstNum + this.operator[1]
+                this.additionalScreen.textContent = `${this.firstNum} ${this.operator[1]}`
                 
                 if(!this.lastInputIsAdditionalOperator) {
                     this.prevOperator = [...this.operator]
@@ -119,7 +119,7 @@ export class Calculator {
             if(this.firstNum && this.secondNum && this.operator) {
                 this.mainScreen.textContent = this.calculate(this.prevOperator[0], this.firstNum, this.secondNum)
                 this.firstNum = this.mainScreen.textContent
-                this.calcHistory(this.firstNum + this.operator[1]  + (this.secondNum || '') + '=' + this.mainScreen.textContent)
+                this.calcHistory(`${this.firstNum} ${this.operator[1]} ${this.secondNum || ''} = ${this.mainScreen.textContent}`)
             }
 
             if(this.operator[0] !== this.prevOperator[0]) {
@@ -127,7 +127,7 @@ export class Calculator {
             }
 
             this.secondNum = null
-            this.additionalScreen.textContent = this.firstNum + this.operator[1]  + (this.secondNum || '')
+            this.additionalScreen.textContent = `${this.firstNum} ${this.operator[1]} ${this.secondNum || ''}`
         }
 
         if(evt.target.dataset.operator !== 'point') this.lastInputIsOperator = true
@@ -178,7 +178,7 @@ export class Calculator {
             let originNum = this.secondNum
             this.secondNum = formulaOne
             this.mainScreen.textContent = this.secondNum
-            this.additionalScreen.textContent = this.firstNum + this.operator[1] + prefix + '(' + originNum + ')'
+            this.additionalScreen.textContent = `${this.firstNum} ${this.operator[1]} ${prefix}(${originNum})`
             this.addOperatorIsLast = true
         } 
         
@@ -186,10 +186,10 @@ export class Calculator {
             let originNum = this.firstNum
             this.firstNum = formulaTwo
             this.mainScreen.textContent = this.firstNum
-            this.additionalScreen.textContent = prefix + '(' + originNum + ')' + (this.operator?.at(1) || '')
+            this.additionalScreen.textContent = `${prefix}(${originNum}) ${this.operator?.at(1) || ''}`
         }
 
-        this.calcHistory(this.additionalScreen.textContent+'='+this.mainScreen.textContent)
+        this.calcHistory(`${this.additionalScreen.textContent} = ${this.mainScreen.textContent}`)
     }
 
     floatFix(value) {
